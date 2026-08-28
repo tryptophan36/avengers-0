@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07090f;
+  --foreground: #f5f0df;
+  --red: #e33a2c;
+  --gold: #f4b942;
+  --font-geist-sans: Arial, Helvetica, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; }
+
+.landing-page, .game-page {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 25%, rgb(227 58 44 / 18%), transparent 30rem),
+    linear-gradient(145deg, #0d1220 0%, #06070b 62%);
+}
+
+.landing-page { display: grid; place-items: center; padding: 2rem; }
+
+.landing-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgb(244 185 66 / 35%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(244 185 66 / 35%) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, transparent, black, transparent);
+}
+
+.landing-card {
+  position: relative;
+  width: min(42rem, 100%);
+  border: 1px solid rgb(244 185 66 / 25%);
+  border-left: 4px solid var(--red);
+  padding: clamp(2rem, 7vw, 5rem);
+  background: rgb(8 11 18 / 85%);
+  box-shadow: 0 2rem 6rem rgb(0 0 0 / 45%);
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--gold);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.landing-card h1 {
+  margin: 0;
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+  text-transform: uppercase;
+}
+
+.landing-copy {
+  max-width: 31rem;
+  margin: 2rem 0;
+  color: #b5b8c3;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.95rem 1.25rem;
+  background: var(--red);
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.primary-link:hover { background: #ff493a; transform: translateY(-2px); }
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.game-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  width: min(100%, 75rem);
+  margin: 0 auto 1rem;
+}
+
+.game-header h1 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.5rem, 4vw, 2.7rem);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.back-link {
+  color: #a9adba;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.back-link:hover { color: white; }
+
+.game-shell {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  width: min(100%, 75rem);
+  margin: 0 auto;
+}
+
+.game-frame {
+  width: min(100%, calc((100dvh - 13rem) * 16 / 9));
+  min-width: min(100%, 20rem);
+  overflow: hidden;
+  border: 1px solid rgb(244 185 66 / 28%);
+  background: #090c13;
+  box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 55%);
+}
+
+.game-canvas { position: relative; width: 100%; aspect-ratio: 16 / 9; }
+
+.game-canvas canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.game-loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--gold);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.controls-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.5rem;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  color: #858a98;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.controls-strip strong { color: #f3f0e6; }
+
+@media (max-height: 620px) {
+  .game-page { padding-block: 0.75rem; }
+  .game-header { margin-bottom: 0.5rem; }
+  .game-header .eyebrow { display: none; }
+  .game-frame { width: min(100%, calc((100dvh - 7rem) * 16 / 9)); }
+}
